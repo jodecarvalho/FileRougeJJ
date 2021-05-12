@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creation Question</title>
+</head>
+<body>
+    <form action="" method="GET"> <!-- Modifier en POST pour ecrire dans la BDD -->
+        <fieldset>
+            <legend>Création d'une question</legend>
+            <div>
+                <label for="qniveau">Niveau</label>
+                <select name="question__niveau" id="qniveau" required>
+                  <option></option>
+                  <option value="1">Débutant</option>
+                  <option value="2">Confirmé</option>
+                  <option value="3">Expert</option>
+                </select>
+            </div>
+            <div>
+                <label for="qlibelle">Libellé</label>
+                <input type="text" name="question_libelle" id="qlibelle" value="">
+            </div>
+            <div>
+                <label for="qouverte">Question Ouverte ?</label>
+                <input type="checkbox" name="question_ouverte" id="qouverte" value="question_ouverte">
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Vrai</th>
+                        <th>Libelle Reponse</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><input type="radio" name="question_vrai" id="qvrai_1" value="question_vrai1"></td>
+                        <td><input type="text" name="question_rep" id="qrep_1" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><input type="radio" name="question_vrai" id="qvrai_2" value="question_vrai2"></td>
+                        <td><input type="text" name="question_rep" id="qrep_2" value=""></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><input type="radio" name="question_vrai" id="qvrai_3" value="question_vrai3"></td>
+                        <td><input type="text" name="question_rep" id="qrep_3" value=""></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            </fieldset>
+
+
+        <div class="actions">
+            <!--
+              Bouton d'envoi du formulaire
+              (mettre un attribut name permet de rendre le bouton d'action en tant que "champ" du formulaire).
+            -->
+            <input type="submit" value="ADD">
+    
+            <!-- reset => remise à zéro du formulaire-->
+            <input type="reset" value="RAZ">
+          </div>
+    </form>
+</body>
+</html>
