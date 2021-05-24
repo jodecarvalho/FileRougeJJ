@@ -1,0 +1,13 @@
+.form-group{
+    display: flex;
+    flex-flow: column wrap;
+  }
+
+  
+  form,
+  #logs { width: 30%; }
+  
+  #logs { flex-grow: 1; }
+  
+  .bonus { font-style: italic; color: gray; }
+  .bonus::after { content: ' (bonus)'; }
