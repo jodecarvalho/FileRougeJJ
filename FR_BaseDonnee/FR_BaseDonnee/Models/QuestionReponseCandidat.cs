@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FR_DataAccessLayer.Models
 {
-    class QuestionReponseCandidat
+    public class QuestionReponseCandidat
     {
         [Key, Column(Order = 1)]
         public int ReponseCandidatId { get; set; }

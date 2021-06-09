@@ -45,21 +45,16 @@ using FR_ApiData.Models;
             return this.Ok(result);
         }
 
-        //[HttpPost]
-        //public IHttpActionResult Create([FromBody] Reponse reponse)
-        //{
-        //    if (reponseAccessLayer.Get(reponse.ReponseId) == null) { return this.NotFound(); }
-        //    var reponseToAdd = new FR_DataAccessLayer.Models.Reponse
-        //    {
-                
-        //        Nom = pizza.Nom,
-        //        PateId = pizza.Pate.Id,
-        //    };
-        //    pizzaToAdd.PizzaIngredients = pizza.Ingredients.Select(ip => new DAL.Models.PizzaIngredient { Pizza = pizzaToAdd, IngredientId = ip.Id }).ToList();
-
-        //    db.Add(pizzaToAdd);
-        //    return this.Ok("created");
-        //}
+        [HttpPost]
+        public IHttpActionResult Create([FromBody] Reponse reponse)
+        {
+            var reponseToAdd = new FR_DataAccessLayer.Models.Reponse
+            {
+                Libelle = reponse.Libelle 
+            };
+            reponseAccessLayer.Add(reponseToAdd);
+            return this.Ok("created");
+        }
 
         //[HttpPut]
         //public IHttpActionResult Update(int id, [FromBody] Pizza pizza)
@@ -87,22 +82,22 @@ using FR_ApiData.Models;
         //    return this.Ok("updated");
         //}
 
-        //[HttpDelete]
-        //public IHttpActionResult Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return this.BadRequest();
-        //    }
-        //    var pizzaToDelete = db.Get((int)id);
-        //    if (pizzaToDelete == null)
-        //    {
-        //        return this.NotFound();
-        //    }
+        [HttpDelete]
+        public IHttpActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return this.BadRequest();
+            }
+            var reponseToDelete = reponseAccessLayer.Get((int)id);
+            if (reponseToDelete == null)
+            {
+                return this.NotFound();
+            }
 
-        //    db.Delete(pizzaToDelete.Id);
-        //    return this.Ok("Delete");
-        //}
+            reponseAccessLayer.Delete(reponseToDelete.ReponseId);
+            return this.Ok("Delete");
+        }
         //// GET: Reponse
         //public ActionResult Index()
         //{

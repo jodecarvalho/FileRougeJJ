@@ -1,4 +1,5 @@
-﻿using FR_Web.Services;
+﻿using FR_Web.Models;
+using FR_Web.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,18 @@ namespace FR_Web.Controllers
         public async Task<ActionResult> Create()
         {
             return View();
+        }
+        [HttpPost]
+            [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(Reponse reponse)
+        {
+           if (ModelState.IsValid)
+            {
+                await reponseService.Create(reponse);
+                return RedirectToAction("Index");
+            }
+
+            return View(reponse);
         }
     }
 }

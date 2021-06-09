@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FR_DataAccessLayer.Models
 {
-    class ReponseCandidat
+    public class ReponseCandidat
     {
         public int ReponseCandidatId { get; set; }
         public string Commentaire { get; set; }

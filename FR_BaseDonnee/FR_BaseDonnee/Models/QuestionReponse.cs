@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FR_BaseDonnee.Models
+namespace FR_DataAccessLayer.Models
 {
-    class QuestionReponse
+    public class QuestionReponse
     {
         [Key, Column(Order = 1)]
         public int QuestionId { get; set; }

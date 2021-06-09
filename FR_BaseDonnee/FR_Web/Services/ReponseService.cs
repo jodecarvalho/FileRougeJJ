@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -32,5 +33,19 @@ namespace FR_Web.Services
             }
             return new List<Reponse>();
         }
+
+        public async Task<bool> Create(Reponse reponse)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(reponse), Encoding.UTF8, "application/json");
+            var response = await this.httpClient.PostAsync($"/api/reponse", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
     }
 }

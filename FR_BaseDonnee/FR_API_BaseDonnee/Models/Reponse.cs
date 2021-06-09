@@ -13,7 +13,5 @@ namespace FR_ApiData.Models
         public long ReponseId { get; set; }
         [DataMember]
         public string Libelle { get; set; }
-        [DataMember]
-        public bool Vraie { get; set; }
     }
 }
