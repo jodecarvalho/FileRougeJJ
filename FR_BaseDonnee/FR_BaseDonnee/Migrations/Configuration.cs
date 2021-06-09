@@ -5,14 +5,14 @@
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<FR_BaseDonnee.FR_JJ>
+    internal sealed class Configuration : DbMigrationsConfiguration<FR_DataAccessLayer.Context.FR_JJ>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(FR_BaseDonnee.FR_JJ context)
+        protected override void Seed(FR_DataAccessLayer.Context.FR_JJ context)
         {
             //  This method will be called after migrating to the latest version.
 
