@@ -9,11 +9,12 @@ namespace FR_DataAccessLayer.Models
 {
     public class Reponse
     {
+        [Key]
         public int ReponseId { get; set; }
         [Required]
         public string Libelle { get; set; }
-        public bool Vraie { get; set; }
+    
 
-        public Question Question { get; set; }
+        public ICollection<Question> Question { get; set; }
     }
 }

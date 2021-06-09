@@ -73,10 +73,15 @@
     <Compile Include="Migrations\202106090958432_MaJv2.designer.cs">
       <DependentUpon>202106090958432_MaJv2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202106091222584_MaJv3.cs" />
+    <Compile Include="Migrations\202106091222584_MaJv3.designer.cs">
+      <DependentUpon>202106091222584_MaJv3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Agent.cs" />
     <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\QuestionReponse.cs" />
     <Compile Include="Models\QuestionReponseCandidat.cs" />
     <Compile Include="Models\Quizz.cs" />
     <Compile Include="Models\Reponse.cs" />
@@ -95,6 +100,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202106090958432_MaJv2.resx">
       <DependentUpon>202106090958432_MaJv2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202106091222584_MaJv3.resx">
+      <DependentUpon>202106091222584_MaJv3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

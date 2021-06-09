@@ -20,8 +20,7 @@ using FR_ApiData.Models;
             var result = reponseAccessLayer.GetAll().Select(p => new Reponse
             {
                 ReponseId = p.ReponseId,
-                Libelle = p.Libelle,
-                Vraie = p.Vraie
+                Libelle = p.Libelle
             });
             return this.Ok(result);
         }
@@ -41,8 +40,7 @@ using FR_ApiData.Models;
             var result = new Reponse
             {
                 ReponseId = reponse.ReponseId,
-                Libelle = reponse.Libelle,
-                Vraie = reponse.Vraie
+                Libelle = reponse.Libelle
             };
             return this.Ok(result);
         }
