@@ -63,6 +63,19 @@ namespace FR_Web.Services
             return false;
         }
 
+        public async Task<bool> Update(int id, Reponse reponse)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(reponse), Encoding.UTF8, "application/json");
+            var response = await this.httpClient.PutAsync($"/api/reponse/{id}", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<bool> Delete(int id)
         {
             var response = await this.httpClient.DeleteAsync($"/api/reponse/{id}");

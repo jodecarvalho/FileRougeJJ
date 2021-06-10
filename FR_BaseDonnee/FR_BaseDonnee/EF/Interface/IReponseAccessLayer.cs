@@ -12,7 +12,7 @@ namespace FR_DataAccessLayer.EF.Interface
         long Add(Reponse reponse);
         Reponse Update(Reponse reponse);
         void Delete(long id);
-        Reponse Get(long id);
+        Reponse Get(long id, bool tracking = false);
         List<Reponse> GetAll();
     }
 }
