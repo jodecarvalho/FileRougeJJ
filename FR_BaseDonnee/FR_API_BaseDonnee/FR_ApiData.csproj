@@ -160,7 +160,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\" />
-    <Folder Include="Views\Question\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

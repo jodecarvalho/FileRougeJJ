@@ -45,7 +45,7 @@ namespace FR_DataAccessLayer.EF.AccessLayer
                 .Include(q => q.Libre)
                 .Include(q => q.Niveau)
                 .Include(q => q.QuestionReponses)
-                .Include(q => q.Quizzs)
+                .Include(q => q.QuizzQuestions)
                 .FirstOrDefault(q => q.QuestionId == id);
         }
 
@@ -56,7 +56,7 @@ namespace FR_DataAccessLayer.EF.AccessLayer
               .Include(q => q.Libre)
               .Include(q => q.Niveau)
               .Include(q => q.QuestionReponses)
-              .Include(q => q.Quizzs)
+              .Include(q => q.QuizzQuestions)
               .ToList();
         }
 
