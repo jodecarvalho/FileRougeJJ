@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<FR_Web.Models.Reponse>
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Reponse/_ReponseLayout.cshtml";
 }
 
 <h2>Index</h2>
@@ -33,3 +34,24 @@
         </tr>
     }
     </table>
+<input type="button" value="New" class="create-button" />
+<div id="details">
+
+</div>
+    @*<script type="text/javascript">
+        $("#details").load("/ReponseController/GetModule?partialName=_createReponse");
+    </script>*@
+<script type="text/javascript">
+
+    $(document).ready(function ()
+    {
+        $(".create-button").on("click", function ()
+        {
+            $.ajax()
+                .done(function (partialViewResult)
+                {
+                    $("#details").html(partialViewResult);
+                });
+        })
+    });
+</script>

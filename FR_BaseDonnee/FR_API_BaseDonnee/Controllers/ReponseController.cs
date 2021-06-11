@@ -56,31 +56,20 @@ using FR_ApiData.Models;
             return this.Ok("created");
         }
 
-        //[HttpPut]
-        //public IHttpActionResult Update(int id, [FromBody] Pizza pizza)
-        //{
-        //    if (!pdb.Exists(pizza.Pate.Id))
-        //    {
-        //        return this.NotFound();
-        //    }
+        [HttpPut]
+        public IHttpActionResult Update(int id, [FromBody] Reponse reponse)
+        {
+           
+            var reponseToUpdate = new FR_DataAccessLayer.Models.Reponse
+            {
+                Libelle = reponse.Libelle,
+                ReponseId = reponse.ReponseId
+            };
 
-        //    if (!idb.Exists(pizza.Ingredients.Select(i => i.Id).ToList()))
-        //    {
-        //        return this.NotFound();
-        //    }
+            reponseAccessLayer.Update(reponseToUpdate);
 
-        //    var pizzaToUpdate = new DAL.Models.Pizza
-        //    {
-        //        Id = pizza.Id,
-        //        Nom = pizza.Nom,
-        //        PateId = pizza.Pate.Id,
-        //        PizzaIngredients = pizza.Ingredients.Select(i => new DAL.Models.PizzaIngredient { IngredientId = i.Id, PizzaId = pizza.Id }).ToList()
-        //    };
-
-        //    db.Update(pizzaToUpdate);
-
-        //    return this.Ok("updated");
-        //}
+            return this.Ok("updated");
+        }
 
         [HttpDelete]
         public IHttpActionResult Delete(int? id)

@@ -10,7 +10,7 @@ namespace FR_Web.Models
     public class Reponse
     {
         [DataMember]
-        public long ReponseId { get; set; }
+        public int ReponseId { get; set; }
         [DataMember]
         public string Libelle { get; set; }
     }

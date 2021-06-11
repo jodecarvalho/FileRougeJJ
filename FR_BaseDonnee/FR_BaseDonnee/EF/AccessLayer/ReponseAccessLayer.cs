@@ -29,7 +29,7 @@ namespace FR_DataAccessLayer.EF.AccessLayer
 
         public void Delete(long id)
         {
-            var reponse = this.Get(id);
+            var reponse = this.Get(id, true);
             if (reponse != null)
             {
                 this.reponses.Remove(reponse);
@@ -37,9 +37,17 @@ namespace FR_DataAccessLayer.EF.AccessLayer
             }
         }
 
-            public Reponse Get(long id)
+            public Reponse Get(long id, bool tracking = false)
         {
-            return this.reponses.FirstOrDefault(r => r.ReponseId == id);
+            var result = new Reponse { };
+
+            if (tracking) 
+                result = this.reponses.AsQueryable().FirstOrDefault(r => r.ReponseId == id);
+            
+            else 
+                result = this.reponses.AsQueryable().AsNoTracking().FirstOrDefault(r => r.ReponseId == id);
+
+            return result;
         }
 
         public List<Reponse> GetAll()

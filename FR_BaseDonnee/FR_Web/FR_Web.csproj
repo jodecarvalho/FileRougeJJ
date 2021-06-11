@@ -170,6 +170,8 @@
     <Content Include="Views\Reponse\_ReponseLayout.cshtml" />
     <Content Include="Views\Reponse\Create.cshtml" />
     <Content Include="Views\Reponse\Delete.cshtml" />
+    <Content Include="Views\Reponse\Edit.cshtml" />
+    <Content Include="Views\Reponse\_createReponse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
