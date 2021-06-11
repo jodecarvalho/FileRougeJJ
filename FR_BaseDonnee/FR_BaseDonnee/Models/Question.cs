@@ -16,8 +16,8 @@ namespace FR_DataAccessLayer.Models
         public string Libelle { get; set; }
         public bool Libre { get; set; }
         public string Commentaire { get; set; }
-        public ICollection<Reponse> Reponses { get; set; }
+
         public ICollection<Quizz> Quizzs { get; set; }
-        public ICollection<QuestionReponse> QuestionReponses { get; set; }
+        public virtual ICollection<QuestionReponse> QuestionReponses { get; set; }
     }
 }
