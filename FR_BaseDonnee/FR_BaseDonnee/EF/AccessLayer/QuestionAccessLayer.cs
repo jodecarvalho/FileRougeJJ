@@ -44,9 +44,8 @@ namespace FR_BaseDonnee.EF.AccessLayer
                 .Include(q => q.Libelle)
                 .Include(q => q.Libre)
                 .Include(q => q.Niveau)
-                .Include(q => q.Reponses)
+                .Include(q => q.QuestionReponses)
                 .Include(q => q.Quizzs)
-                .Include(q => )
                 .FirstOrDefault(q => q.QuestionId == id);
         }
 
@@ -56,7 +55,7 @@ namespace FR_BaseDonnee.EF.AccessLayer
               .Include(q => q.Libelle)
               .Include(q => q.Libre)
               .Include(q => q.Niveau)
-              .Include(q => q.Reponses)
+              .Include(q => q.QuestionReponses)
               .Include(q => q.Quizzs)
               .ToList();
         }
@@ -70,11 +69,6 @@ namespace FR_BaseDonnee.EF.AccessLayer
             }
             this.db.SaveChanges();
             return question;
-        }
-
-        public bool GetBoolQuestionReponse(int questionId, int reponseId)
-        {
-            return this.questionReponses.FirstOrDefault(qr => qr.QuestionId == questionId && qr.ReponseId == reponseId).Vraie;
         }
     }
 }
