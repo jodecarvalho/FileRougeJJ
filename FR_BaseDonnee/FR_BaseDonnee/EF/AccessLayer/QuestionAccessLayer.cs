@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using FR_DataAccessLayer.Context;
 using FR_DataAccessLayer.Models;
 
-namespace FR_BaseDonnee.EF.AccessLayer
+namespace FR_DataAccessLayer.EF.AccessLayer
 {
-    class QuestionAccessLayer
+    public class QuestionAccessLayer
     {
         private readonly FR_JJ db = new FR_JJ();
         private readonly DbSet<Question> questions;

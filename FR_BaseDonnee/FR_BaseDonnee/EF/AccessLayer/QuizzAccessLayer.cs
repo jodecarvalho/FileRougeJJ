@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using FR_DataAccessLayer.Context;
 using FR_DataAccessLayer.Models;
 
-namespace FR_BaseDonnee.EF.AccessLayer
+namespace FR_DataAccessLayer.EF.AccessLayer
 {
     public class QuizzAccessLayer
     {
