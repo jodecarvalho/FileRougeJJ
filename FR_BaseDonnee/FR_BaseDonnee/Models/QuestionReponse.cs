@@ -17,5 +17,8 @@ namespace FR_DataAccessLayer.Models
         public int ReponseId { get; set; }
         public virtual Reponse Reponse { get; set; }
         public bool Vraie { get; set; }
+
+        public virtual Question Question { get; set; }
+        public virtual Reponse Reponse { get; set; }
     }
 }
