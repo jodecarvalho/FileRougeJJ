@@ -13,12 +13,10 @@ namespace FR_DataAccessLayer.Models
     {
         [Key, Column(Order = 1)]
         public int QuestionId { get; set; }
+        public virtual Question Question { get; set; }
         [Key, Column(Order = 2)]
         public int ReponseId { get; set; }
         public virtual Reponse Reponse { get; set; }
         public bool Vraie { get; set; }
-
-        public virtual Question Question { get; set; }
-        public virtual Reponse Reponse { get; set; }
     }
 }
