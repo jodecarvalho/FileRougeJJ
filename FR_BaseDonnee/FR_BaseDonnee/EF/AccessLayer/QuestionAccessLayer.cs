@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 using FR_DataAccessLayer.Context;
 using FR_DataAccessLayer.Models;
 
-namespace FR_BaseDonnee.EF.AccessLayer
+namespace FR_DataAccessLayer.EF.AccessLayer
 {
-    class QuestionAccessLayer
+    public class QuestionAccessLayer
     {
         private readonly FR_JJ db = new FR_JJ();
         private readonly DbSet<Question> questions;
@@ -31,32 +31,38 @@ namespace FR_BaseDonnee.EF.AccessLayer
 
         public async Task<bool> DeleteAsync(long id)
         {
-            var question = this.Get(id);
+            var question = this.Get(id, true);
             this.questions.Remove(question);
             var result = await this.db.SaveChangesAsync().ConfigureAwait(false);
 
             return result > 0;
         }
 
-        public Question Get(long id)
+        public Question Get(long id, bool tracking = false)
         {
-            return this.questions.AsQueryable().AsNoTracking()
-                .Include(q => q.Libelle)
-                .Include(q => q.Libre)
-                .Include(q => q.Niveau)
-                .Include(q => q.QuestionReponses)
-                .Include(q => q.Quizzs)
+            var result = new Question();
+            if (tracking)
+            {
+                 result = this.questions.AsQueryable()
+                .Include(q => q.QuestionReponses.Select(qr => qr.Reponse))
+                .Include(q => q.QuizzQuestions.Select(qq => qq.Quizz))
                 .FirstOrDefault(q => q.QuestionId == id);
+            }
+            else
+            {
+                 result = this.questions.AsQueryable().AsNoTracking()
+                .Include(q => q.QuestionReponses.Select(qr => qr.Reponse))
+                .Include(q => q.QuizzQuestions.Select(qq => qq.Quizz))
+                .FirstOrDefault(q => q.QuestionId == id);
+            }
+            return result;
         }
 
         public List<Question> GetAll()
         {
             return this.questions.AsQueryable().AsNoTracking()
-              .Include(q => q.Libelle)
-              .Include(q => q.Libre)
-              .Include(q => q.Niveau)
-              .Include(q => q.QuestionReponses)
-              .Include(q => q.Quizzs)
+              .Include(q => q.QuestionReponses.Select(qr => qr.Reponse))
+              .Include(q => q.QuizzQuestions.Select(qq=> qq.Quizz))
               .ToList();
         }
 

@@ -7,13 +7,13 @@ namespace FR_BaseDonnee.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class MaJv2 : IMigrationMetadata
+    public sealed partial class Init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MaJv2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
         
         string IMigrationMetadata.Id
         {
-            get { return "202106090958432_MaJv2"; }
+            get { return "202106111644187_Init"; }
         }
         
         string IMigrationMetadata.Source
