@@ -31,32 +31,38 @@ namespace FR_DataAccessLayer.EF.AccessLayer
 
         public async Task<bool> DeleteAsync(long id)
         {
-            var question = this.Get(id);
+            var question = this.Get(id, true);
             this.questions.Remove(question);
             var result = await this.db.SaveChangesAsync().ConfigureAwait(false);
 
             return result > 0;
         }
 
-        public Question Get(long id)
+        public Question Get(long id, bool tracking = false)
         {
-            return this.questions.AsQueryable().AsNoTracking()
-                .Include(q => q.Libelle)
-                .Include(q => q.Libre)
-                .Include(q => q.Niveau)
-                .Include(q => q.QuestionReponses)
-                .Include(q => q.QuizzQuestions)
+            var result = new Question();
+            if (tracking)
+            {
+                 result = this.questions.AsQueryable()
+                .Include(q => q.QuestionReponses.Select(qr => qr.Reponse))
+                .Include(q => q.QuizzQuestions.Select(qq => qq.Quizz))
                 .FirstOrDefault(q => q.QuestionId == id);
+            }
+            else
+            {
+                 result = this.questions.AsQueryable().AsNoTracking()
+                .Include(q => q.QuestionReponses.Select(qr => qr.Reponse))
+                .Include(q => q.QuizzQuestions.Select(qq => qq.Quizz))
+                .FirstOrDefault(q => q.QuestionId == id);
+            }
+            return result;
         }
 
         public List<Question> GetAll()
         {
             return this.questions.AsQueryable().AsNoTracking()
-              .Include(q => q.Libelle)
-              .Include(q => q.Libre)
-              .Include(q => q.Niveau)
-              .Include(q => q.QuestionReponses)
-              .Include(q => q.QuizzQuestions)
+              .Include(q => q.QuestionReponses.Select(qr => qr.Reponse))
+              .Include(q => q.QuizzQuestions.Select(qq=> qq.Quizz))
               .ToList();
         }
 

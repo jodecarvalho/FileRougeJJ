@@ -75,5 +75,42 @@ using FR_DataAccessLayer.EF.AccessLayer;
             questionAccessLayer.AddAsync(questionToAdd);
             return this.Ok("created");
         }
+
+        [HttpPut]
+        public IHttpActionResult Update(int id, [FromBody] Question question)
+        {
+
+            var questionToUpdate = new FR_DataAccessLayer.Models.Question
+            {
+                QuestionId = question.QuestionId,
+                Libelle = question.Libelle,
+                Niveau = question.Niveau,
+                Libre = question.Libre,
+                Commentaire = question.Commentaire,
+                QuestionReponses = question.Reponses.Select(qr => new FR_DataAccessLayer.Models.QuestionReponse { QuestionId = question.QuestionId, ReponseId = qr.ReponseId}).ToList()
+            };
+
+            questionAccessLayer.Update(questionToUpdate);
+
+            return this.Ok("updated");
+        }
+
+        [HttpDelete]
+        public IHttpActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return this.BadRequest();
+            }
+            var questionToDelete = questionAccessLayer.Get((int)id);
+            if (questionToDelete == null)
+            {
+                return this.NotFound();
+            }
+
+          questionAccessLayer.DeleteAsync(questionToDelete.QuestionId);
+            return this.Ok("Delete");
+        }
+
     }
 }

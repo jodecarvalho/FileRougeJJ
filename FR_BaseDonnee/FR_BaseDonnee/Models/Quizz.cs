@@ -13,6 +13,6 @@ namespace FR_DataAccessLayer.Models
         public int QuizzId { get; set; }
         public string Niveau { get; set; }
 
-        public virtual ICollection<Question> Questions { get; set; }
+        public virtual ICollection<QuizzQuestion> QuizzQuestions { get; set; }
     }
 }

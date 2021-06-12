@@ -1,0 +1,70 @@
+﻿@model IEnumerable<FR_Web.Models.Question>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Question/_QuestionLayout.cshtml";
+}
+
+<h2>Index Question</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Niveau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Libelle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Libre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Reponses)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Commentaire)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.QuestionId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Niveau)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Libelle)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Libre)
+    </td>
+    <td>
+        <ul>
+            @foreach (var reponse in item.Reponses)
+            {
+                <li>
+                    @Html.DisplayFor(modelItem => reponse.Libelle)
+                </li>
+            }
+            </ul>
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Commentaire)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.QuestionId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.QuestionId })
+    </td>
+</tr>
+}
+
+</table>

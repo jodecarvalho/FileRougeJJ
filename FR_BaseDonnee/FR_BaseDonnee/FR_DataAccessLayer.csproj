@@ -68,21 +68,9 @@
     <Compile Include="EF\AccessLayer\ReponseAccessLayer.cs" />
     <Compile Include="EF\Interface\IReponseAccessLayer.cs" />
     <Compile Include="Context\FR_JJ.cs" />
-    <Compile Include="Migrations\202106090941290_MaJBDD.cs" />
-    <Compile Include="Migrations\202106090941290_MaJBDD.designer.cs">
-      <DependentUpon>202106090941290_MaJBDD.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106090958432_MaJv2.cs" />
-    <Compile Include="Migrations\202106090958432_MaJv2.designer.cs">
-      <DependentUpon>202106090958432_MaJv2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091222584_MaJv3.cs" />
-    <Compile Include="Migrations\202106091222584_MaJv3.designer.cs">
-      <DependentUpon>202106091222584_MaJv3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202106091300330_MaJv4.cs" />
-    <Compile Include="Migrations\202106091300330_MaJv4.designer.cs">
-      <DependentUpon>202106091300330_MaJv4.cs</DependentUpon>
+    <Compile Include="Migrations\202106111644187_Init.cs" />
+    <Compile Include="Migrations\202106111644187_Init.designer.cs">
+      <DependentUpon>202106111644187_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -103,17 +91,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202106090941290_MaJBDD.resx">
-      <DependentUpon>202106090941290_MaJBDD.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106090958432_MaJv2.resx">
-      <DependentUpon>202106090958432_MaJv2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091222584_MaJv3.resx">
-      <DependentUpon>202106091222584_MaJv3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202106091300330_MaJv4.resx">
-      <DependentUpon>202106091300330_MaJv4.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202106111644187_Init.resx">
+      <DependentUpon>202106111644187_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
