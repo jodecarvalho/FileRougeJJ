@@ -1,6 +1,7 @@
 ﻿@model FR_Web.Models.ViewModel.QuestionViewModel
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Question/_QuestionLayout.cshtml";
 }
 
 <h2>Create Question</h2>
@@ -52,6 +53,26 @@
 
     @*Ajouter la vue partielle de creation de reponse ! Tester la création de question (table association) *@
 }
+    @*Vue partielle pour la création de réponses*@
+    <input type="button" value="New Response" class="create-button" />
+
+    <div id="details">
+
+    </div>
+
+    <script type="text/javascript">
+    $(document).ready(function ()
+    {
+        $(".create-button").on("click", function ()
+        {
+            $.ajax()
+                .done(function (partialViewResult)
+                {
+                    $("#details").html(partialViewResult);
+                });
+        })
+    });
+    </script>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
