@@ -79,6 +79,7 @@
     <Compile Include="Models\QuestionReponse.cs" />
     <Compile Include="Models\QuestionReponseCandidat.cs" />
     <Compile Include="Models\Quizz.cs" />
+    <Compile Include="Models\QuizzAgent.cs" />
     <Compile Include="Models\QuizzQuestion.cs" />
     <Compile Include="Models\Reponse.cs" />
     <Compile Include="Models\ReponseCandidat.cs" />

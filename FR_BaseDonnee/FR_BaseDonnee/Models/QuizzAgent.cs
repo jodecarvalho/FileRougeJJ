@@ -1,5 +1,4 @@
-﻿using FR_DataAccessLayer.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FR_BaseDonnee.Models
+namespace FR_DataAccessLayer.Models
 {
     public class QuizzAgent
     {

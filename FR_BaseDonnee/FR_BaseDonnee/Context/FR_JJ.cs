@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FR_DataAccessLayer.Context
 {
-using FR_DataAccessLayer.Models;
+    using FR_DataAccessLayer.Models;
 using System.Data.Entity;
 
     class FR_JJ : DbContext
@@ -20,6 +20,7 @@ using System.Data.Entity;
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Quizz> Quizzs { get; set; }
         public DbSet<QuizzQuestion> QuizzQuestions { get; set; }
+        public DbSet<QuizzAgent> QuizzAgents { get; set; }
         public DbSet<Question> Questions { get; set; }
         public DbSet<QuestionReponse> QuestionReponses { get; set; }
         public DbSet<Reponse> Reponses { get; set; }
