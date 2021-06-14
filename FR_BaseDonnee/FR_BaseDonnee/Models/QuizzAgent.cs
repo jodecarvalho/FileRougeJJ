@@ -7,16 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FR_DataAccessLayer.Models
+namespace FR_BaseDonnee.Models
 {
-    public class QuestionReponse
+    public class QuizzAgent
     {
         [Key, Column(Order = 1)]
-        public int QuestionId { get; set; }
-        public virtual Question Question { get; set; }
+        public int QuizzId { get; set; }
         [Key, Column(Order = 2)]
-        public int ReponseId { get; set; }
-        public virtual Reponse Reponse { get; set; }
-        public bool Vraie { get; set; }
+        public int AgentId { get; set; }
+
+        public virtual Quizz Quizz { get; set; }
+        public virtual Agent Agent { get; set; }
     }
 }

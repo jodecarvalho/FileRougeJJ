@@ -13,12 +13,10 @@ namespace FR_DataAccessLayer.EF.AccessLayer
     {
         private readonly FR_JJ db = new FR_JJ();
         private readonly DbSet<Question> questions;
-        private readonly DbSet<QuestionReponse> questionReponses;
         public QuestionAccessLayer()
         {
             this.db = new FR_JJ();
             this.questions = this.db.Set<Question>();
-            this.questionReponses = this.db.Set<QuestionReponse>();
         }
 
         public async Task<bool> AddAsync(Question question)
