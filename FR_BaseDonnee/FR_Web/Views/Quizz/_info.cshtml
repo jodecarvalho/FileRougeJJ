@@ -1,0 +1,42 @@
+﻿@model FR_Web.Models.Quizz
+
+<p>Detail du Quizz</p>
+
+
+<div>
+    <h4>Quizz</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.QuizzId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QuizzId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Niveau)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Niveau)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Questions)
+        </dt>
+        <dd>
+            <ul>
+                @foreach (var question in Model.Questions)
+                {
+                <li>@question.Libelle</li>
+                    <ul>
+                        @foreach (var reponse in question.Reponses)
+                        {
+                            <li>@reponse.Libelle</li>
+                        }
+                    </ul>
+                }
+            </ul>
+        </dd>
+    </dl>
+</div>

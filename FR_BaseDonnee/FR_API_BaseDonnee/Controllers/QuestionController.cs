@@ -79,6 +79,8 @@ using FR_DataAccessLayer.EF.AccessLayer;
         [HttpPut]
         public IHttpActionResult Update(int id, [FromBody] Question question)
         {
+            //Il faut comparer les lists de questionreponse dans question(obj1 passé en paramètre) et questionToUpdate.
+            //Pour les objets existants il faut les modifier et pour les objets nouveaux, les créers (besoin d'un questionReponseAccessLayer)
 
             var questionToUpdate = new FR_DataAccessLayer.Models.Question
             {

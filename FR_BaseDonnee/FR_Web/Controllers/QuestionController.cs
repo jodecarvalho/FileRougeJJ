@@ -80,7 +80,7 @@ namespace FR_Web.Controllers
                 return HttpNotFound();
             }
 
-            var reponses = new SelectList(await reponseService.GetAll(), "ReponseId", "Libelle");
+            SelectList reponses = new SelectList(await reponseService.GetAll(), "ReponseId", "Libelle");
 
             var vm = new QuestionViewModel
             {
