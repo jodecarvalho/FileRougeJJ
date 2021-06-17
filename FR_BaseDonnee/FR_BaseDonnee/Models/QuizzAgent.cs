@@ -1,5 +1,4 @@
-﻿using FR_DataAccessLayer.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -9,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace FR_DataAccessLayer.Models
 {
-    public class QuestionReponse
+    public class QuizzAgent
     {
         [Key, Column(Order = 1)]
-        public int QuestionId { get; set; }
-        public virtual Question Question { get; set; }
+        public int QuizzId { get; set; }
         [Key, Column(Order = 2)]
-        public int ReponseId { get; set; }
-        public virtual Reponse Reponse { get; set; }
-        public bool Vraie { get; set; }
+        public int AgentId { get; set; }
+
+        public virtual Quizz Quizz { get; set; }
+        public virtual Agent Agent { get; set; }
     }
 }

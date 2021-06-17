@@ -19,31 +19,46 @@ namespace FR_DataAccessLayer.EF.AccessLayer
             this.agents = this.db.Set<Agent>();
         }
 
-        public long Add(Agent agent)
+        public async Task<bool> AddAsync(Agent agent)
         {
             this.agents.Add(agent);
-            this.db.SaveChanges();
-            return agent.AgentId;
+            var result = await this.db.SaveChangesAsync().ConfigureAwait(false);
+
+            return result > 0;
         }
 
-        public void Delete(long id)
+        public async Task<bool> DeleteAsync(long id)
         {
-            var agent = this.Get(id);
-            if (agent != null)
+            var agent = this.Get(id, true);
+            this.agents.Remove(agent);
+            var result = await this.db.SaveChangesAsync().ConfigureAwait(false);
+
+            return result > 0;
+        }
+
+        public Agent Get(long id, bool tracking = false)
+        {
+            var result = new Agent();
+            if (tracking)
             {
-                this.agents.Remove(agent);
-                this.db.SaveChanges();
+                result = this.agents.AsQueryable()
+               .Include(a => a.Quizzs.Select(q => q.Quizz))
+               .FirstOrDefault(a => a.AgentId == id);
             }
-        }
-
-        public Agent Get(long id)
-        {
-            return this.agents.FirstOrDefault(a => a.AgentId == id);
+            else
+            {
+                result = this.agents.AsQueryable().AsNoTracking()
+               .Include(a => a.Quizzs.Select(q => q.Quizz))
+               .FirstOrDefault(a => a.AgentId == id);
+            }
+            return result;
         }
 
         public List<Agent> GetAll()
         {
-            return this.agents.ToList();
+            return this.agents.AsQueryable().AsNoTracking()
+            .Include(a => a.Quizzs.Select(q => q.Quizz))
+            .ToList();
         }
 
         public Agent Update(Agent agent)
