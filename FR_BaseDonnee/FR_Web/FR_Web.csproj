@@ -123,17 +123,20 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
+    <Compile Include="Controllers\QuestionReponseController.cs" />
     <Compile Include="Controllers\QuizzController.cs" />
     <Compile Include="Controllers\ReponseController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\QuestionReponse.cs" />
     <Compile Include="Models\Quizz.cs" />
     <Compile Include="Models\Reponse.cs" />
     <Compile Include="Models\ViewModel\QuestionViewModel.cs" />
     <Compile Include="Models\ViewModel\QuizzViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\QuestionReponseService.cs" />
     <Compile Include="Services\QuestionService.cs" />
     <Compile Include="Services\QuizzService.cs" />
     <Compile Include="Services\ReponseService.cs" />
@@ -191,6 +194,11 @@
     <Content Include="Views\Quizz\_info.cshtml" />
     <Content Include="Views\Quizz\Delete.cshtml" />
     <Content Include="Views\Quizz\Edit.cshtml" />
+    <Content Include="Views\QuestionReponse\Create.cshtml" />
+    <Content Include="Views\QuestionReponse\Delete.cshtml" />
+    <Content Include="Views\QuestionReponse\Details.cshtml" />
+    <Content Include="Views\QuestionReponse\Edit.cshtml" />
+    <Content Include="Views\QuestionReponse\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

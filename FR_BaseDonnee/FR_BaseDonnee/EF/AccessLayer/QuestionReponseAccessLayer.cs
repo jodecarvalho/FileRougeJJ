@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FR_BaseDonnee.EF.AccessLayer
 {
-    class QuestionReponseAccessLayer
+    public class QuestionReponseAccessLayer
     {
         private readonly FR_JJ db = new FR_JJ();
         private readonly DbSet<Question> questions;
@@ -22,12 +22,13 @@ namespace FR_BaseDonnee.EF.AccessLayer
             this.questionReponses = this.db.Set<QuestionReponse>();
         }
 
-        public async Task<bool> AddAsync(int questionId, int reponseId)
+        public async Task<bool> AddAsync(QuestionReponse qr)
         {
             var resultToAdd = new QuestionReponse()
             {
-                QuestionId = questionId,
-                ReponseId = reponseId
+                QuestionId = qr.QuestionId, 
+                ReponseId = qr.ReponseId,
+                Vraie = qr.Vraie
             };
             this.questionReponses.Add(resultToAdd);
             var result = await this.db.SaveChangesAsync().ConfigureAwait(false);
@@ -51,7 +52,7 @@ namespace FR_BaseDonnee.EF.AccessLayer
 
         public QuestionReponse Get(QuestionReponse questionReponse, bool tracking = false)
         {
-            var result = new QuestionReponse() { };
+            var result = new QuestionReponse();
             if (tracking)
             {
                 result = this.questionReponses.AsQueryable()

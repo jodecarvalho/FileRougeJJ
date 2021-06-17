@@ -47,32 +47,31 @@
             @Html.ValidationMessageFor(m => m.AvailableReponses, "", new { @class = "text-danger" })
         </div>
     </div>
+
+
     <div class="col-md-offset-2 col-md-10">
         <input type="submit" value="Create" class="btn btn-default" />
     </div>
 
     @*Ajouter la vue partielle de creation de reponse ! Tester la création de question (table association) *@
 }
-    @*Vue partielle pour la création de réponses*@
-    <input type="button" value="New Response" class="create-button" />
+@*Vue partielle pour la création de réponses*@
+<input type="button" value="New Response" class="create-button" />
 
-    <div id="details">
+<div id="details">
 
-    </div>
+</div>
 
-    <script type="text/javascript">
-    $(document).ready(function ()
-    {
-        $(".create-button").on("click", function ()
-        {
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".create-button").on("click", function () {
             $.ajax()
-                .done(function (partialViewResult)
-                {
+                .done(function (partialViewResult) {
                     $("#details").html(partialViewResult);
                 });
         })
     });
-    </script>
+</script>
 
 <div>
     @Html.ActionLink("Back to List", "Index")
