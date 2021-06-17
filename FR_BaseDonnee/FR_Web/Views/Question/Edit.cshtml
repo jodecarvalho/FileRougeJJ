@@ -1,7 +1,66 @@
-﻿@* Creation de la vue d'edit des questions*@
+﻿@model FR_Web.Models.ViewModel.QuestionViewModel
 @{
     ViewBag.Title = "Edit";
+    Layout = "~/Views/Question/_QuestionLayout.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Edit Question</h2>
+@Html.ValidationSummary()
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m=>m.question.QuestionId)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.question.Libelle, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.question.Libelle, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.question.Libelle, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.question.Niveau, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.question.Niveau, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.question.Niveau, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.question.Libre, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.question.Libre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.question.Libre, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.question.Commentaire, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(m => m.question.Commentaire, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(m => m.question.Commentaire, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.SelectedReponseIds, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.ListBoxFor(m => m.SelectedReponseIds, Model.AvailableReponses, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.AvailableReponses, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Edit" class="btn btn-default" />
+    </div>
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
 

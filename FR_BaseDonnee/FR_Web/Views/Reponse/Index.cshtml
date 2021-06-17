@@ -34,24 +34,4 @@
         </tr>
     }
     </table>
-<input type="button" value="New" class="create-button" />
-<div id="details">
 
-</div>
-    @*<script type="text/javascript">
-        $("#details").load("/ReponseController/GetModule?partialName=_createReponse");
-    </script>*@
-<script type="text/javascript">
-
-    $(document).ready(function ()
-    {
-        $(".create-button").on("click", function ()
-        {
-            $.ajax()
-                .done(function (partialViewResult)
-                {
-                    $("#details").html(partialViewResult);
-                });
-        })
-    });
-</script>
