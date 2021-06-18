@@ -136,7 +136,7 @@
     <Compile Include="Controllers\AgentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionController.cs" />
-    <Compile Include="Controllers\QuestionReponsesController.cs" />
+    <Compile Include="Controllers\QuestionReponseController.cs" />
     <Compile Include="Controllers\QuizzController.cs" />
     <Compile Include="Controllers\ReponseController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />

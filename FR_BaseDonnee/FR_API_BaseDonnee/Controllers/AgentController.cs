@@ -100,11 +100,11 @@
             var agentToUpdate = new FR_DataAccessLayer.Models.Agent
             {
                 AgentId = agent.AgentId,
-                Libelle = agent.Libelle,
-                Niveau = agent.Niveau,
-                Libre = agent.Libre,
-                Commentaire = agent.Commentaire,
-                AgentReponses = agent.Reponses.Select(qr => new FR_DataAccessLayer.Models.AgentReponse { AgentId = agent.AgentId, ReponseId = qr.ReponseId }).ToList()
+                //Libelle = agent.Libelle,
+                //Niveau = agent.Niveau,
+                //Libre = agent.Libre,
+                //Commentaire = agent.Commentaire,
+                //AgentReponses = agent.Reponses.Select(qr => new FR_DataAccessLayer.Models.AgentReponse { AgentId = agent.AgentId, ReponseId = qr.ReponseId }).ToList()
             };
 
             agentAccessLayer.Update(agentToUpdate);

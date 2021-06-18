@@ -37,56 +37,56 @@ namespace FR_Web.Services
         //    return null;
         //}
 
-        public async Task<IList<Question>> GetAll()
+        public async Task<IList<QuestionReponse>> GetAll()
         {
-            var response = await this.httpClient.GetAsync("/api/question");
+            var response = await this.httpClient.GetAsync("/api/questionreponse");
 
             if (response.IsSuccessStatusCode)
             {
                 string responseBody = await response.Content.ReadAsStringAsync();
-                var questions = JsonConvert.DeserializeObject<List<Question>>(responseBody);
+                var questions = JsonConvert.DeserializeObject<IList<QuestionReponse>>(responseBody);
 
                 return questions;
             }
-            return new List<Question>();
+            return new List<QuestionReponse>();
         }
 
-        public async Task<bool> Create(Question question)
-        {
-            var content = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
-            var response = await this.httpClient.PostAsync($"/api/question", content);
+        //public async Task<bool> Create(Question question)
+        //{
+        //    var content = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
+        //    var response = await this.httpClient.PostAsync($"/api/question", content);
 
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        return true;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
-        public async Task<bool> Update(int id, Question question)
-        {
-            var content = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
-            var response = await this.httpClient.PutAsync($"/api/question/{id}", content);
+        //public async Task<bool> Update(int id, Question question)
+        //{
+        //    var content = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
+        //    var response = await this.httpClient.PutAsync($"/api/question/{id}", content);
 
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        return true;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
-        public async Task<bool> Delete(int id)
-        {
-            var response = await this.httpClient.DeleteAsync($"/api/question/{id}");
+        //public async Task<bool> Delete(int id)
+        //{
+        //    var response = await this.httpClient.DeleteAsync($"/api/question/{id}");
 
-            if (response.IsSuccessStatusCode)
-            {
-                return true;
-            }
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        return true;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
     }
 }

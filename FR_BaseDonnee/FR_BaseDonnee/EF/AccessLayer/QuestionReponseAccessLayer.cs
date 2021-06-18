@@ -22,46 +22,46 @@ namespace FR_BaseDonnee.EF.AccessLayer
             this.questionReponses = this.db.Set<QuestionReponse>();
         }
 
-        public async Task<bool> AddAsync(QuestionReponse qr)
-        {
-            var resultToAdd = new QuestionReponse()
-            {
-                QuestionId = qr.QuestionId, 
-                ReponseId = qr.ReponseId,
-                Vraie = qr.Vraie
-            };
-            this.questionReponses.Add(resultToAdd);
-            var result = await this.db.SaveChangesAsync().ConfigureAwait(false);
+        //public async Task<bool> AddAsync(QuestionReponse qr)
+        //{
+        //    var resultToAdd = new QuestionReponse()
+        //    {
+        //        QuestionId = qr.QuestionId,
+        //        ReponseId = qr.ReponseId,
+        //        Vraie = qr.Vraie
+        //    };
+        //    this.questionReponses.Add(resultToAdd);
+        //    var result = await this.db.SaveChangesAsync().ConfigureAwait(false);
 
-            return result > 0;
-        }
+        //    return result > 0;
+        //}
 
-        public async Task<bool> DeleteAsync(long questionId, long reponseId)
-        {
-            var resultToDelete = new QuestionReponse()
-            {
-                QuestionId = (int)questionId,
-                ReponseId = (int)reponseId
-            };
-            var questionReponse = this.Get(resultToDelete, true);
-            this.questionReponses.Remove(questionReponse);
-            var result = await this.db.SaveChangesAsync().ConfigureAwait(false);
+        //public async Task<bool> DeleteAsync(long questionId, long reponseId)
+        //{
+        //    var resultToDelete = new QuestionReponse()
+        //    {
+        //        QuestionId = (int)questionId,
+        //        ReponseId = (int)reponseId
+        //    };
+        //    var questionReponse = this.Get(resultToDelete.ReponseId, true);
+        //    this.questionReponses.Remove(questionReponse);
+        //    var result = await this.db.SaveChangesAsync().ConfigureAwait(false);
 
-            return result > 0;
-        }
+        //    return result > 0;
+        //}
 
-        public QuestionReponse Get(QuestionReponse questionReponse, bool tracking = false)
+        public QuestionReponse Get(int? id, bool tracking = false)
         {
             var result = new QuestionReponse();
             if (tracking)
             {
                 result = this.questionReponses.AsQueryable()
-               .Where(q => q.QuestionId == questionReponse.QuestionId && q.ReponseId == questionReponse.ReponseId).FirstOrDefault();
+               .Where(q => q.ReponseId == id).FirstOrDefault();
             }
             else
             {
                 result = this.questionReponses.AsQueryable().AsNoTracking()
-               .Where(q => q.QuestionId == questionReponse.QuestionId && q.ReponseId == questionReponse.ReponseId).FirstOrDefault();
+               .Where(q => q.ReponseId == id).FirstOrDefault();
             }
             return result;
         }
@@ -73,7 +73,7 @@ namespace FR_BaseDonnee.EF.AccessLayer
 
         public QuestionReponse Update(QuestionReponse questionReponse)
         {
-            var resultToUpdate = this.Get(questionReponse, true);
+            var resultToUpdate = this.Get(questionReponse.QuestionId, true);
             if (resultToUpdate != null)
             {
                 this.db.Entry(questionReponse).State = EntityState.Modified;

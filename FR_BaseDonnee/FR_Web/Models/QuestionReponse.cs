@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -10,10 +11,13 @@ namespace FR_Web.Models
     public class QuestionReponse
     {
         [DataMember]
+        [JsonProperty("QuestionId")]
         public int QuestionId { get; set; }
         [DataMember]
+        [JsonProperty("ReponseId")]
         public int ReponseId { get; set; }
         [DataMember]
+        [JsonProperty("Vraie")]
         public bool Vraie { get; set; }
 
     }

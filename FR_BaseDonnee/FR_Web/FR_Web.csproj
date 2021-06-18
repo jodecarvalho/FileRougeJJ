@@ -199,6 +199,7 @@
     <Content Include="Views\QuestionReponse\Details.cshtml" />
     <Content Include="Views\QuestionReponse\Edit.cshtml" />
     <Content Include="Views\QuestionReponse\Index.cshtml" />
+    <Content Include="Views\QuestionReponse\_QrLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

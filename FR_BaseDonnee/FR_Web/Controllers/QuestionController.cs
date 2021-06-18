@@ -18,7 +18,7 @@ namespace FR_Web.Controllers
         // GET: Question
         public async Task<ActionResult> Index()
         {
-            var list = await questionService.GetAll();
+            var list = await questionService.GetAll().ConfigureAwait(false);
             return View(list);
         }
 
@@ -47,9 +47,7 @@ namespace FR_Web.Controllers
             if (ModelState.IsValid)
             {
                 vm.question.Reponses = vm.SelectedReponseIds.Select(i => new Reponse { ReponseId = i }).ToList();
-                
-                vm.questionReponses = vm.questionReponses.Select(qr => new QuestionReponse {  ReponseId = qr.ReponseId }).ToList();
-                await questionService.Create(vm.question);
+                await questionService.Create(vm.question).ConfigureAwait(false);
                 return RedirectToAction("Index");
             }
 
@@ -62,7 +60,7 @@ namespace FR_Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await reponseService.Create(reponse);
+                await reponseService.Create(reponse).ConfigureAwait(false);
                 return RedirectToAction("Create");
             }
 
@@ -104,7 +102,7 @@ namespace FR_Web.Controllers
             {
                 vm.question.Reponses = vm.SelectedReponseIds.Select(i => new Reponse { ReponseId = i }).ToList();
 
-                await questionService.Update(vm.question.QuestionId, vm.question);
+                await questionService.Update(vm.question.QuestionId, vm.question).ConfigureAwait(false);
                 return RedirectToAction("Index");
             }
             return View(vm);

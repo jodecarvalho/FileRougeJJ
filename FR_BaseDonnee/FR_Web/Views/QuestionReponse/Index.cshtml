@@ -1,10 +1,11 @@
-﻿@model IEnumerable<FR_DataAccessLayer.Models.QuestionReponse>
+﻿@model IEnumerable<FR_Web.Models.QuestionReponse>
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/QuestionReponse/_QrLayout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Index QuestionReponse</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Question.Niveau)
+            @Html.DisplayNameFor(model => model.QuestionId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Reponse.Libelle)
+            @Html.DisplayNameFor(model => model.ReponseId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Vraie)
@@ -26,18 +27,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Question.Niveau)
+            @Html.DisplayFor(modelItem => item.QuestionId)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Reponse.Libelle)
+            @Html.DisplayFor(modelItem => item.ReponseId)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Vraie)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id = new { QuestionID = item.QuestionId, ReponseId = item.ReponseId } }) 
         </td>
     </tr>
 }

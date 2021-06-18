@@ -10,9 +10,9 @@ using FR_BaseDonnee.EF.AccessLayer;
 using FR_DataAccessLayer.Context;
 using FR_DataAccessLayer.Models;
 
-namespace FR_API_BaseDonnee.Controllers
+namespace FR_ApiData.Controllers
 {
-    public class QuestionReponsesController : ApiController
+    public class QuestionReponseController : ApiController
     {
         private QuestionReponseAccessLayer qrAccessLayer = new QuestionReponseAccessLayer();
 
@@ -29,13 +29,13 @@ namespace FR_API_BaseDonnee.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult Get([FromBody] QuestionReponse qr)
+        public IHttpActionResult Get(int? id)
         {
-            if (qr == null)
+            if (id == null)
             {
                 return this.BadRequest();
             }
-            var questionReponse = qrAccessLayer.Get(qr);
+            var questionReponse = qrAccessLayer.Get((int)id);
             if (questionReponse == null)
             {
                 return this.NotFound();
@@ -49,20 +49,20 @@ namespace FR_API_BaseDonnee.Controllers
             return this.Ok(result);
         }
 
-        [HttpPost]
-        public IHttpActionResult Create([FromBody] QuestionReponse qr)
-        {
-            var qrToAdd = new FR_DataAccessLayer.Models.QuestionReponse
-            {
-                QuestionId = qr.QuestionId,
-                ReponseId = qr.ReponseId,
-                Vraie = qr.Vraie
-            };
+        //[HttpPost]
+        //public IHttpActionResult Create([FromBody] QuestionReponse qr)
+        //{
+        //    var qrToAdd = new FR_DataAccessLayer.Models.QuestionReponse
+        //    {
+        //        QuestionId = qr.QuestionId,
+        //        ReponseId = qr.ReponseId,
+        //        Vraie = qr.Vraie
+        //    };
             
 
-            qrAccessLayer.AddAsync(qrToAdd);
-            return this.Ok("created");
-        }
+        //    qrAccessLayer.AddAsync(qrToAdd.ReponseId);
+        //    return this.Ok("created");
+        //}
 
         [HttpPut]
         public IHttpActionResult Update([FromBody] QuestionReponse qr)
@@ -82,23 +82,23 @@ namespace FR_API_BaseDonnee.Controllers
             return this.Ok("updated");
         }
 
-        [HttpDelete]
-        public IHttpActionResult Delete([FromBody] QuestionReponse qr )
-        {
-            if (qr.QuestionId == null || qr.ReponseId == null)
-            {
-                return this.BadRequest();
-            }
-            var questionReponse = new QuestionReponse() { QuestionId = qr.QuestionId, ReponseId = qr.ReponseId };
-            var qrToDelete = qrAccessLayer.Get(qr);
-            if (qrToDelete == null)
-            {
-                return this.NotFound();
-            }
+        //[HttpDelete]
+        //public IHttpActionResult Delete([FromBody] QuestionReponse qr )
+        //{
+        //    if (qr.QuestionId == null || qr.ReponseId == null)
+        //    {
+        //        return this.BadRequest();
+        //    }
+        //    var questionReponse = new QuestionReponse() { QuestionId = qr.QuestionId, ReponseId = qr.ReponseId };
+        //    var qrToDelete = qrAccessLayer.Get(qr);
+        //    if (qrToDelete == null)
+        //    {
+        //        return this.NotFound();
+        //    }
 
-            qrAccessLayer.DeleteAsync(qrToDelete.QuestionId,qrToDelete.ReponseId);
-            return this.Ok("Delete");
-        }
+        //    qrAccessLayer.DeleteAsync(qrToDelete.QuestionId,qrToDelete.ReponseId);
+        //    return this.Ok("Delete");
+        //}
 
     }
 }
