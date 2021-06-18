@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="EF\AccessLayer\AgentAccessLayer.cs" />
     <Compile Include="EF\AccessLayer\QuestionAccessLayer.cs" />
+    <Compile Include="EF\AccessLayer\QuestionReponseAccessLayer.cs" />
     <Compile Include="EF\AccessLayer\QuizzAccessLayer.cs" />
     <Compile Include="EF\AccessLayer\ReponseAccessLayer.cs" />
     <Compile Include="EF\Interface\IReponseAccessLayer.cs" />

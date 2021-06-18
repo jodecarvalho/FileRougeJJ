@@ -66,7 +66,7 @@ namespace FR_DataAccessLayer.EF.AccessLayer
 
         public Question Update(Question question)
         {
-            var questionToUpdate = this.Get(question.QuestionId);
+            var questionToUpdate = this.Get(question.QuestionId, true);
             if (questionToUpdate != null)
             {
                 this.db.Entry(question).State = EntityState.Modified;
