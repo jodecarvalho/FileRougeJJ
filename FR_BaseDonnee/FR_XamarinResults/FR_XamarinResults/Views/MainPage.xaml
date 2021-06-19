@@ -10,9 +10,9 @@
     <StackLayout Orientation="Vertical" >
         <StackLayout IsVisible="{Binding IsLoginVisible}" VerticalOptions="StartAndExpand">
             <Label Text="Connexion aux résultats" HorizontalOptions="Center"/>
-            <Entry Text="{Binding Email}" Placeholder="Identifiant Twitter" ReturnType="Next" Keyboard="Email"/>
+            <Entry Text="{Binding Email}" Placeholder="Identifiant" ReturnType="Next" Keyboard="Email"/>
             <Entry Text="{Binding Password}" IsPassword="True" Placeholder="Mot de passe" ReturnType="Next" Keyboard="Default"/>
-            <Label x:Name="error" TextColor="Red"/>
+            <Label Text="{Binding Erreur}" TextColor="Red"/>
             <Button Command="{Binding Connection}" Text="se connecter" />
         </StackLayout>
         <StackLayout Orientation="Vertical"  IsVisible="{Binding IsResultatVisible}">

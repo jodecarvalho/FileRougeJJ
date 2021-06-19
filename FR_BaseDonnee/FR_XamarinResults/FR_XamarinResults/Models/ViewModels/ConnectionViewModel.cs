@@ -15,13 +15,14 @@ namespace FR_XamarinResults.Models.ViewModels
         
         private string email;
         private string password;
+        private string erreur;
         private bool isLoginVisible = true;
         private bool isResultatVisible = false;
+
 
         public ObservableCollection<Resultat> resultats { get; set; }
 
         private readonly ResultatService resultatService = ResultatService.GetInstance();
-
 
         public string Email
         {
@@ -39,14 +40,25 @@ namespace FR_XamarinResults.Models.ViewModels
         {
             get { return password; }
             set
-           {
+          {
                 if (password != value)
                 {
                     password = value;
                     this.IsPropertyChanged("Password");
                 }
             }
-
+        }
+        public string Erreur
+        {
+            get { return erreur; }
+            set
+            {
+                if (erreur != value)
+                {
+                    erreur = value;
+                    this.IsPropertyChanged("Erreur");
+                }
+            }
         }
         public bool IsLoginVisible
         {
@@ -72,6 +84,7 @@ namespace FR_XamarinResults.Models.ViewModels
             }
             get { return isResultatVisible; }
         }
+
         public void IsPropertyChanged(string property)
         {
             if(PropertyChanged != null)
@@ -86,10 +99,17 @@ namespace FR_XamarinResults.Models.ViewModels
             this.resultats = resultatService.GetResultat();
             Connection = new Command(() =>
             {
-                if (this.Email.Equals("arnaud") && this.Password.Equals("123456"))
+                if (this.Email == null || string.IsNullOrWhiteSpace(this.Email) || this.Password == null || string.IsNullOrWhiteSpace(this.Password))
+                    this.Erreur = "Merci de renseigner tous les champs du formulaire";
+                else
                 {
-                    this.IsLoginVisible = false;
-                    this.IsResultatVisible = true;
+                    if (this.Email.Equals("arnaud") && this.Password.Equals("123456"))
+                    {
+                        this.IsLoginVisible = false;
+                        this.IsResultatVisible = true;
+                    }
+                    else
+                        this.Erreur = "Identifiant ou Mot de Passe incorrect.";
                 }
             });
         }
