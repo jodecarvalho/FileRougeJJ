@@ -16,6 +16,7 @@ namespace FR_Web.Controllers
         private readonly QuizzService quizzService = new QuizzService();
         private readonly QuestionService questionService = new QuestionService();
         private readonly ReponseService reponseService = new ReponseService();
+        private readonly ReponseCandidatService rcService = new ReponseCandidatService();
         // GET: Quizz
         public async Task<ActionResult> Index()
         {
@@ -39,6 +40,21 @@ namespace FR_Web.Controllers
             };
             return View(vm);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Create(QuizzViewModel vm)
+        {
+                if (ModelState.IsValid)
+                {
+                    vm.quizz.Questions = vm.SelectedQuestionIds.Select(i => new Question { QuestionId = i }).ToList();
+                    await quizzService.Create(vm.quizz).ConfigureAwait(false);
+                    return RedirectToAction("Index");
+                }
+
+                return View(vm);
+        }
+
 
         public async Task<ActionResult> Delete(int id)
         {
@@ -83,6 +99,45 @@ namespace FR_Web.Controllers
                 SelectedQuestionIds = quizz.Questions.Select(q => q.QuestionId).ToList()
             };
             return View(vm);
+        }
+
+        public async Task<ActionResult> Formulaire(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var quizz = await quizzService.Get((int)id);
+            if (quizz == null)
+            {
+                return HttpNotFound();
+            }
+
+            var vm = new FormViewModel
+            {
+               Quizz = quizz
+            };
+            return View(vm);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Formulaire(FormViewModel vm)
+        {
+            for (var i = 0; i > vm.Quizz.Questions.Count; i++)
+            {
+                if (ModelState.IsValid)
+                {
+                    var result = new ReponseCandidat
+                    {
+                        Quizz = vm.Quizz.QuizzId.ToString(),
+                        Question = i.ToString(),
+                        Reponse = vm.ReponseCandidat.Reponse
+                    };
+                    await rcService.Create(result);
+                }
+            }
+            return RedirectToAction("Index");
         }
 
         // POST: Students/Edit/5

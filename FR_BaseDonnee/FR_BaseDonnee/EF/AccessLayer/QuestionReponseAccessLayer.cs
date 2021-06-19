@@ -50,18 +50,19 @@ namespace FR_BaseDonnee.EF.AccessLayer
         //    return result > 0;
         //}
 
-        public QuestionReponse Get(int? id, bool tracking = false)
+        public QuestionReponse Get( int QuestionId, int ReponseId, bool tracking = false )
         {
+
             var result = new QuestionReponse();
             if (tracking)
             {
                 result = this.questionReponses.AsQueryable()
-               .Where(q => q.ReponseId == id).FirstOrDefault();
+               .Where(q => q.ReponseId == ReponseId && q.QuestionId == QuestionId).FirstOrDefault();
             }
             else
             {
                 result = this.questionReponses.AsQueryable().AsNoTracking()
-               .Where(q => q.ReponseId == id).FirstOrDefault();
+               .Where(q => q.ReponseId == ReponseId && q.QuestionId == QuestionId).FirstOrDefault();
             }
             return result;
         }
@@ -73,7 +74,7 @@ namespace FR_BaseDonnee.EF.AccessLayer
 
         public QuestionReponse Update(QuestionReponse questionReponse)
         {
-            var resultToUpdate = this.Get(questionReponse.QuestionId, true);
+            var resultToUpdate = this.Get(questionReponse.QuestionId, questionReponse.ReponseId);
             if (resultToUpdate != null)
             {
                 this.db.Entry(questionReponse).State = EntityState.Modified;

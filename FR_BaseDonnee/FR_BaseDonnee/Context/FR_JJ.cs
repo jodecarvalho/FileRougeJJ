@@ -26,7 +26,7 @@ using System.Data.Entity;
         public DbSet<Reponse> Reponses { get; set; }
         public DbSet<Resultat> Resultats { get; set; }
         public DbSet<ReponseCandidat> ReponseCandidats { get; set; }
-        public DbSet<QuestionReponseCandidat> QuestionReponseCandidats { get; set; }
+       // public DbSet<QuestionReponseCandidat> QuestionReponseCandidats { get; set; }
 
 
 

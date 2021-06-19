@@ -29,13 +29,13 @@ namespace FR_ApiData.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult Get(int? id)
+        public IHttpActionResult Get(string questionId, string reponseId)
         {
-            if (id == null)
+            if (questionId == null || reponseId == null)
             {
                 return this.BadRequest();
             }
-            var questionReponse = qrAccessLayer.Get((int)id);
+            var questionReponse = qrAccessLayer.Get(int.Parse(questionId), int.Parse(reponseId), false);
             if (questionReponse == null)
             {
                 return this.NotFound();
@@ -58,7 +58,7 @@ namespace FR_ApiData.Controllers
         //        ReponseId = qr.ReponseId,
         //        Vraie = qr.Vraie
         //    };
-            
+
 
         //    qrAccessLayer.AddAsync(qrToAdd.ReponseId);
         //    return this.Ok("created");

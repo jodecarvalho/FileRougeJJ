@@ -47,7 +47,8 @@
                 </ul>
             </td>
             <td>
-                <input type="button" value="info" class="info-button" id="@item.QuizzId" />
+                <input type="button" value="info" class="info-button" id="@item.QuizzId" /> |
+                @Html.ActionLink("Test", "Formulaire", new { id = item.QuizzId }) | 
                 @Html.ActionLink("Edit", "Edit", new { id = item.QuizzId }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.QuizzId })
             </td>

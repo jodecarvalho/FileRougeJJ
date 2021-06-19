@@ -21,29 +21,40 @@ namespace FR_Web.Controllers
         }
 
 
-        //public async Task<ActionResult> Edit(int? id)
-        //{
+        public async Task<ActionResult> Edit(int QuestionId, int ReponseId)
+        {
 
-        //    if (id == null)
-        //    {
-        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //    }
-        //    var question = await questionService.Get((int)id);
-        //    if (question == null)
-        //    {
-        //        return HttpNotFound();
-        //    }
+            if (QuestionId == null || ReponseId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var qr = await qrService.Get(QuestionId, ReponseId);
+            if (qr == null)
+            {
+                return HttpNotFound();
+            }
 
-        //    SelectList reponses = new SelectList(await reponseService.GetAll(), "ReponseId", "Libelle");
 
-        //    var vm = new QuestionViewModel
-        //    {
-        //        question = question,
-        //        AvailableReponses = reponses,
-        //        SelectedReponseIds = question.Reponses.Select(qr => qr.ReponseId).ToList()
-        //    };
-        //    return View(vm);
-        //}
+            var result = new QuestionReponse
+            {
+               QuestionId = qr.QuestionId,
+               ReponseId = qr.ReponseId,
+               Vraie = qr.Vraie
+            };
+            return View(result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Edit(QuestionReponse qr)
+        {
+            if (ModelState.IsValid)
+            {
+                await qrService.Update(qr.QuestionId, qr.ReponseId, qr).ConfigureAwait(false);
+                return RedirectToAction("Index");
+            }
+            return View(qr);
+        }
         //        // GET: QuestionReponses/Details/5
         //        public ActionResult Details(int? id)
         //        {

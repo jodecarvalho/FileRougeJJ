@@ -138,6 +138,7 @@
     <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="Controllers\QuestionReponseController.cs" />
     <Compile Include="Controllers\QuizzController.cs" />
+    <Compile Include="Controllers\ReponseCandidatController.cs" />
     <Compile Include="Controllers\ReponseController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -148,6 +149,7 @@
     <Compile Include="Models\QuestionReponse.cs" />
     <Compile Include="Models\Quizz.cs" />
     <Compile Include="Models\Reponse.cs" />
+    <Compile Include="Models\ReponseCandidat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

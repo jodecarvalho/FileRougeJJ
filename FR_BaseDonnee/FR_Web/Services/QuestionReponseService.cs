@@ -21,25 +21,24 @@ namespace FR_Web.Services
         }
 
 
-        //public async Task<QuestionReponse> Get(QuestionReponse qr)
-        //{
-        //    var content = new StringContent(JsonConvert.SerializeObject(qr), Encoding.UTF8, "application/json");
-        //    var response = await this.httpClient.GetAsync($"/api/questionreponse", content);//il faut passer par un query parameter ! 
+        public async Task<QuestionReponse> Get(int QuestionId, int ReponseId)
+        {
+            var response = await this.httpClient.GetAsync($"/api/questionreponse?questionId={QuestionId}&reponseId={ReponseId}");  //il faut passer par un query parameter ! 
 
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        string responseBody = await response.Content.ReadAsStringAsync();
-        //        var question = JsonConvert.DeserializeObject<QuestionReponse>(responseBody);
+            if (response.IsSuccessStatusCode)
+            {
+                string responseBody = await response.Content.ReadAsStringAsync();
+                var question = JsonConvert.DeserializeObject<QuestionReponse>(responseBody);
 
-        //        return question;
-        //    }
+                return question;
+            }
 
-        //    return null;
-        //}
+            return null;
+        }
 
         public async Task<IList<QuestionReponse>> GetAll()
         {
-            var response = await this.httpClient.GetAsync("/api/questionreponse");
+            var response = await this.httpClient.GetAsync("/api/questionreponse").ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
@@ -64,18 +63,18 @@ namespace FR_Web.Services
         //    return false;
         //}
 
-        //public async Task<bool> Update(int id, Question question)
-        //{
-        //    var content = new StringContent(JsonConvert.SerializeObject(question), Encoding.UTF8, "application/json");
-        //    var response = await this.httpClient.PutAsync($"/api/question/{id}", content);
+        public async Task<bool> Update(int QuestionId, int ReponseId, QuestionReponse qr)
+        {
+            var content = new StringContent(JsonConvert.SerializeObject(qr), Encoding.UTF8, "application/json");
+            var response = await this.httpClient.PutAsync($"/api/questionreponse?questionId={QuestionId}&reponseId={ReponseId}", content);
 
-        //    if (response.IsSuccessStatusCode)
-        //    {
-        //        return true;
-        //    }
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
 
-        //    return false;
-        //}
+            return false;
+        }
 
         //public async Task<bool> Delete(int id)
         //{
