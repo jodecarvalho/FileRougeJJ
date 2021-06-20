@@ -48,7 +48,6 @@ namespace FR_Web.Controllers
             {
                 vm.question.Reponses = vm.SelectedReponseIds.Select(i => new Reponse { ReponseId = i }).ToList();
                 
-                vm.questionReponses = vm.questionReponses.Select(qr => new QuestionReponse {  ReponseId = qr.ReponseId }).ToList();
                 await questionService.Create(vm.question);
                 return RedirectToAction("Index");
             }

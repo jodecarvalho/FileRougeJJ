@@ -17,15 +17,7 @@ namespace FR_Web.Controllers
         public async Task<ActionResult> Index()
         {
             var list = await agentService.GetAll();
-
-            if (Request.IsAjaxRequest())
-            {
-                return PartialView("_createAgent");
-            }
-            else
-            {
-                return View(list);
-            }
+            return View(list);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -64,7 +56,7 @@ namespace FR_Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var agent = await agentService.Get((int)id);
+            var agent = await agentService.Get(id.ToString());
             if (agent == null)
             {
                 return HttpNotFound();
@@ -98,7 +90,7 @@ namespace FR_Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var agent = await agentService.Get((int)id);
+            var agent = await agentService.Get(id.ToString());
             if (agent == null)
             {
                 return HttpNotFound();
@@ -113,7 +105,6 @@ namespace FR_Web.Controllers
             await agentService.Delete(id).ConfigureAwait(false);
             return RedirectToAction("Index");
         }
-
 
         //public ActionResult GetModule(string partialName)
         //{

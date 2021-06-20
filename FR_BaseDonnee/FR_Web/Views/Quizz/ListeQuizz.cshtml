@@ -1,0 +1,79 @@
+﻿@model IEnumerable<FR_Web.Models.Quizz>
+
+@{
+    ViewBag.Title = "ListeQuizz";
+}
+
+<h2>Votre Liste de Quizz</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.QuizzId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Niveau)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Questions)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuizzId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Niveau)
+            </td>
+            <td>
+                <ul>
+                    @foreach (var question in item.Questions)
+                    {
+                        <li>
+                            @Html.DisplayFor(modelItem => question.Libelle)
+                            @Html.HiddenFor(modelItem => question.Reponses)
+                            @Html.HiddenFor(modelItem => question.QuestionId)
+                        </li>
+                    }
+                </ul>
+            </td>
+            <td>
+                <input type="button" value="info" class="info-button" id="@item.QuizzId" />
+                @Html.ActionLink("Edit", "Edit", new { id = item.QuizzId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.QuizzId })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="details">
+
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".info-button").on("click", function () {
+            $.ajax({
+                url: "/quizz/info",
+                type: "GET",
+                data: { id: this.id }
+            })
+                .done(function (partialViewResult) {
+                    $("#details").html(partialViewResult);
+                });
+        })
+    });
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -85,9 +85,8 @@
         {
             var agentToAdd = new FR_DataAccessLayer.Models.Agent
             {
-               Name = agent.Name
+               Name = agent.Name,
             };
-            agentToAdd.Quizzs = agent.Quizzs.Select(q => new FR_DataAccessLayer.Models.QuizzAgent { Agent = agentToAdd, QuizzId = q.QuizzId }).ToList();
 
             agentAccessLayer.AddAsync(agentToAdd);
             return this.Ok("created");

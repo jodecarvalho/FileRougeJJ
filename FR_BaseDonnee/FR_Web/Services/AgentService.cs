@@ -21,9 +21,9 @@ namespace FR_Web.Services
         }
 
 
-        public async Task<Agent> Get(int id)
+        public async Task<Agent> Get(string id)
         {
-            var response = await this.httpClient.GetAsync($"/api/agent/{id}");
+            var response = await this.httpClient.GetAsync($"/api/agent/{id}").ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
