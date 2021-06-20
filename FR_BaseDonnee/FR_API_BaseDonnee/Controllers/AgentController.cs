@@ -85,7 +85,7 @@
         {
             var agentToAdd = new FR_DataAccessLayer.Models.Agent
             {
-               Name = agent.Name,
+               Name = agent.Name
             };
 
             agentAccessLayer.AddAsync(agentToAdd);
