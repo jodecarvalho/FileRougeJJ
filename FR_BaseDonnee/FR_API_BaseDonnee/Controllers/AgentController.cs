@@ -85,9 +85,8 @@
         {
             var agentToAdd = new FR_DataAccessLayer.Models.Agent
             {
-               Name = agent.Name
+               Name = agent.Name,
             };
-            agentToAdd.Quizzs = agent.Quizzs.Select(q => new FR_DataAccessLayer.Models.QuizzAgent { Agent = agentToAdd, QuizzId = q.QuizzId }).ToList();
 
             agentAccessLayer.AddAsync(agentToAdd);
             return this.Ok("created");
@@ -96,18 +95,6 @@
         [HttpPut]
         public IHttpActionResult Update(int id, [FromBody] Agent agent)
         {
-
-            var agentToUpdate = new FR_DataAccessLayer.Models.Agent
-            {
-                AgentId = agent.AgentId,
-                //Libelle = agent.Libelle,
-                //Niveau = agent.Niveau,
-                //Libre = agent.Libre,
-                //Commentaire = agent.Commentaire,
-                //AgentReponses = agent.Reponses.Select(qr => new FR_DataAccessLayer.Models.AgentReponse { AgentId = agent.AgentId, ReponseId = qr.ReponseId }).ToList()
-            };
-
-            agentAccessLayer.Update(agentToUpdate);
 
             return this.Ok("updated");
         }

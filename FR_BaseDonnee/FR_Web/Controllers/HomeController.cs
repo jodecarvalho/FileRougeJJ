@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FR_Web.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,8 @@ namespace FR_Web.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly AgentService agentService = new AgentService();
+
         public ActionResult Index()
         {
             return View();
@@ -15,16 +18,27 @@ namespace FR_Web.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Description du but de l'application";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Liste des administrateurs joignables";
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult EnterAgent(string agentId)
+        {
+            var agent = agentService.Get(agentId);
+            if(agent == null)
+            {
+                return View();
+            }
+            return Redirect("https://localhost:44367/ListeQuizz/" + agentId);
         }
     }
 }

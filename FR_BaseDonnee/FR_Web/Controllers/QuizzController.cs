@@ -16,6 +16,7 @@ namespace FR_Web.Controllers
         private readonly QuizzService quizzService = new QuizzService();
         private readonly QuestionService questionService = new QuestionService();
         private readonly ReponseService reponseService = new ReponseService();
+        private readonly AgentService agentService = new AgentService();
         // GET: Quizz
         public async Task<ActionResult> Index()
         {
@@ -100,6 +101,12 @@ namespace FR_Web.Controllers
                 return RedirectToAction("Index");
             }
             return View(vm);
+        }
+
+        public async Task<ActionResult> ListeQuizz(string agentId)
+        {
+            var agent = await agentService.Get(agentId.ToString()).ConfigureAwait(false);
+            return View(agent.Quizzs);
         }
     }
 }
